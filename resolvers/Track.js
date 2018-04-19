@@ -4,10 +4,6 @@ const { getArtist, getAlbum, getTrack } = require("./Helpers")
 
 module.exports = {
     Track: {
-        name(track) {
-            console.log(track)
-            return track.name
-        },
         artist(track) {
             return getArtist(track.artist.name)
         },
@@ -17,7 +13,6 @@ module.exports = {
         },
         similar(track, args) {
             const method = "&method=track.getsimilar"
-            console.log(track.name, track.artist.name)
             let params = "&track=" + encodeURIComponent(track.name) + 
                          "&artist=" + encodeURIComponent(track.artist.name)
             if(args.limit) params += "&limit=" + args.limit
@@ -26,6 +21,11 @@ module.exports = {
                 .then(res => res.json())
                 .then(data => data? data.similartracks? data.similartracks.track : null : null)
                 .then(data => data.map(t => getTrack(t.name, t.artist.name)))
+        },
+        tags(track, args) {
+            let results = track.toptags.tag
+            if(args.limit) results = results.slice(0, args.limit)
+            return results
         }
     }
 }

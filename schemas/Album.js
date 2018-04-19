@@ -4,5 +4,6 @@ module.exports = `
         tracks: [Track]
         imageURL: String
         artist: Artist
+        tags(limit: Int): [Tag]
     }
 `

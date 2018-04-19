@@ -14,6 +14,11 @@ module.exports = {
         },
         artist(album) {
             return getArtist(album.artist)
+        },
+        tags(album, args) {
+            let results = album.tags.tag
+            if(args.limit) results = results.slice(0, args.limit)
+            return results
         }
     }
 }

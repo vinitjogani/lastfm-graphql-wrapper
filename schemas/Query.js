@@ -4,7 +4,7 @@ module.exports = `
         albums(query: String, limit: Int): [Album]
         artists(query: String, limit: Int): [Artist]
         charts(limit: Int): [Track]
+        genres(limit: Int): [Tag]
+        genre(name: String): Tag
     }
 `
-
-// Tags

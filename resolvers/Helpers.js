@@ -13,13 +13,13 @@ module.exports = {
         const params = "&track=" + encodeURIComponent(name) +
                        "&artist=" + encodeURIComponent(artist)
         return fetch(config.getRoot() + method + params)
-            .then(res => res.json()).then(data => { console.log(data); return data.track })
+            .then(res => res.json()).then(data => data.track)
     },
     getAlbum(name, artist) {
         const method = "&method=album.getinfo"
         const params = "&album=" + encodeURIComponent(name) +
                        "&artist=" + encodeURIComponent(artist)
         return fetch(config.getRoot() + method + params)
-            .then(res => res.json()).then(data => { console.log(data); return data.album })
+            .then(res => res.json()).then(data => data.album )
     }
 }

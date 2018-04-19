@@ -48,6 +48,22 @@ module.exports = {
                 .then(res => res.json())
                 .then(data => data.tracks.track)
                 .then(tracks => tracks.map((t) => getTrack(t.name, t.artist.name)))
+        },
+        genres(root, args) {
+            const method = "&method=tag.getTopTags"
+
+            return fetch(config.getRoot() + method)
+                .then(res => res.json())
+                .then(data => data.toptags.tag)
+                .then(data => args.limit ? data.slice(0, args.limit) : data)
+        },
+        genre(root, args) {
+            const method = "&method=tag.getinfo"
+            const params = "&tag=" + args.name
+
+            return fetch(config.getRoot() + method + params)
+                .then(res => res.json())
+                .then(data => data.tag)
         }
     }
 }

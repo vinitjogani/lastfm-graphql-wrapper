@@ -5,5 +5,6 @@ module.exports = `
         album: Album
         similar(limit: Int): [Track]
         playcount: Int
+        tags(limit: Int): [Tag]
     }
 `
